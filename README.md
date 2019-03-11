@@ -4,9 +4,11 @@ This is the official repository for Pervasive RoadRage.
 
 # Group Members
 
-- Jens Lindholm (ejilof-5@gmail.com)
-- August Eriksson (augeri-5@gmail.com)
-- Rasmus Bergström (rasber-5@gmail.com)
+- Jens Lindholm (ejilof-5@student.ltu.se)
+- August Eriksson (augeri-5@student.ltu.se)
+- Rasmus Bergström (rasber-5@student.ltu.se)
+- Tanguy Fournier (tankou-8@student.ltu.se)
+- Pablo Loesia (pablue-8@student.ltu.se)
 
 # Idea
 
