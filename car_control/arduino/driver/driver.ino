@@ -28,7 +28,7 @@ void updateThrottle() {
         throttle.writeMicroseconds(1600);
       }
       if (stressState == HIGH_STRESS) {
-        throttle.writeMicroseconds(1550);
+        throttle.writeMicroseconds(1560);
       }
       break;
     case 'B':
