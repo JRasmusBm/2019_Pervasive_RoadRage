@@ -34,13 +34,13 @@ class ArduinoInterface:
                 if message == b"left":
                     self.arduino.write(b"l")
                     self.sent += 1
-                if message == b"0":
+                if message == b"low":
                     self.arduino.write(b"1")
                     self.sent += 1
-                if message == b"1":
+                if message == b"medium":
                     self.arduino.write(b"2")
                     self.sent += 1
-                if message == b"2":
+                if message == b"high":
                     self.arduino.write(b"3")
                     self.sent += 1
             if self.arduino.inWaiting() > 0:
