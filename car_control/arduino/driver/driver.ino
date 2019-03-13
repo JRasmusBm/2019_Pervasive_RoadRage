@@ -107,7 +107,7 @@ void loop() {
   if (Serial.available() > 0) {
     updateState(Serial.read());
   }
-  if (millis() - lastThrottleInput > 1000) {
+  if (millis() - lastThrottleInput > 600) {
     resetThrottle();
   }
   if (millis() - lastSteeringInput > 1000) {
