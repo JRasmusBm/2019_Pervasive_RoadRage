@@ -6,20 +6,41 @@ char FORWARD = 'f';
 char RIGHT = 'r';
 char BACK = 'b';
 char LEFT = 'l';
+char LOW_STRESS = '1';
+char MEDIUM_STRESS = '2';
+char HIGH_STRESS = '3';
 unsigned long lastSteeringInput = 0;
 unsigned long lastThrottleInput = 0;
 unsigned long lastOutput = 0;
 char throttleState = 'S';
 char steeringState = 'C';
+char stressState = '2';
 
 void updateThrottle() {
   Serial.print(throttleState);
+  Serial.print(stressState);
   switch(throttleState) {
     case 'F':
-      throttle.writeMicroseconds(1625);
+      if (stressState == LOW_STRESS) {
+        throttle.writeMicroseconds(1650);
+      }
+      if (stressState == MEDIUM_STRESS) {
+        throttle.writeMicroseconds(1625);
+      }
+      if (stressState == HIGH_STRESS) {
+        throttle.writeMicroseconds(1600);
+      }
       break;
     case 'B':
-      throttle.writeMicroseconds(1350);
+      if (stressState == LOW_STRESS) {
+        throttle.writeMicroseconds(1300);
+      }
+      if (stressState == MEDIUM_STRESS) {
+        throttle.writeMicroseconds(1350);
+      }
+      if (stressState == HIGH_STRESS) {
+        throttle.writeMicroseconds(1400);
+      }
       break;
     default:
       throttle.writeMicroseconds(1500);
@@ -57,7 +78,17 @@ void updateState(char input) {
     lastSteeringInput = millis();
     steeringState = 'L';
   }
+  if (input == LOW_STRESS) {
+    stressState = LOW_STRESS;
+  }
+  if (input == MEDIUM_STRESS) {
+    stressState = MEDIUM_STRESS;
+  }
+  if (input == HIGH_STRESS) {
+    stressState = HIGH_STRESS;
+  }
 }
+
 void resetThrottle() {
   throttleState = 'S';
 }
@@ -76,10 +107,10 @@ void loop() {
   if (Serial.available() > 0) {
     updateState(Serial.read());
   }
-  if (millis() - lastThrottleInput > 1000) {
+  if (millis() - lastThrottleInput > 300) {
     resetThrottle();
   }
-  if (millis() - lastSteeringInput > 1000) {
+  if (millis() - lastSteeringInput > 500) {
     resetSteering();
   }
   if (millis() - lastOutput > 100) {
