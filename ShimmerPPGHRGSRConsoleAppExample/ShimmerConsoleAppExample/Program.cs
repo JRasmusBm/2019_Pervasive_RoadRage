@@ -49,7 +49,7 @@ namespace ShimmerHRGSRStream_ConsoleApp
         public void initSocket()
         {
             soc = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress ipAdd = System.Net.IPAddress.Parse("192.168.1.35");
+            IPAddress ipAdd = System.Net.IPAddress.Parse("192.168.0.196");
             IPEndPoint remoteEP = new IPEndPoint(ipAdd, 12346);
             soc.Connect(remoteEP);
         }
