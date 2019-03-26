@@ -49,6 +49,7 @@ class ArduinoInterface:
                     response = raw.decode()
                 except UnicodeDecodeError:
                     response = raw
-                print(f'Message from Arduino: "{response}"')
+                if(len(response) == 3):
+                    print(f'Message from Arduino: "{response}"')
                 self.received += 1
         print("Closing Connection to the Arduino")

@@ -22,21 +22,21 @@ void updateThrottle() {
   switch(throttleState) {
     case 'F':
       if (stressState == LOW_STRESS) {
-        throttle.writeMicroseconds(1650);
+        throttle.writeMicroseconds(1640);
       }
       if (stressState == MEDIUM_STRESS) {
-        throttle.writeMicroseconds(1625);
+        throttle.writeMicroseconds(1595);
       }
       if (stressState == HIGH_STRESS) {
-        throttle.writeMicroseconds(1600);
+        throttle.writeMicroseconds(1580);
       }
       break;
     case 'B':
       if (stressState == LOW_STRESS) {
-        throttle.writeMicroseconds(1300);
+        throttle.writeMicroseconds(1360);
       }
       if (stressState == MEDIUM_STRESS) {
-        throttle.writeMicroseconds(1350);
+        throttle.writeMicroseconds(1380);
       }
       if (stressState == HIGH_STRESS) {
         throttle.writeMicroseconds(1400);

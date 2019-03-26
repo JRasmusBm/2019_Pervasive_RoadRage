@@ -1,7 +1,8 @@
 import socket
+import threading
 from pynput import keyboard
 
-HOST = "192.168.1.35"
+HOST = "192.168.0.196"
 PORT = 12345
 
 try:
@@ -14,7 +15,17 @@ s.connect((HOST, PORT))
 print("Connected succesfully!")
 print(s.recv(5000))
 
-allowed_keys = ("left", "right", "up", "down", "esc")
+pressed = {"left": False, "right": False, "up": False, "down": False}
+
+
+def set_interval(func, sec):
+    def func_wrapper():
+        set_interval(func, sec)
+        func()
+
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+    return t
 
 
 def on_press(key):
@@ -22,14 +33,32 @@ def on_press(key):
         return
     k = key.name
 
-    if k in allowed_keys:
+    if k == "esc":
+        s.close()
+        lis.stop()
+    if k in pressed.keys():
         print("Key pressed:", k)
-        s.send(k.encode("utf-8"))
-        if k == "esc":
-            s.close()
-            lis.stop()
+        pressed[k] = True
 
 
-lis = keyboard.Listener(on_press=on_press)
+def on_release(key):
+    if not hasattr(key, "name"):
+        return
+    k = key.name
+
+    if k in pressed.keys():
+        print("Key released:", k)
+        pressed[k] = False
+
+
+def send_pressed():
+    for p in pressed:
+        if pressed[p]:
+            s.send(p.encode("utf-8"))
+
+
+set_interval(send_pressed, 0.1)
+
+lis = keyboard.Listener(on_press=on_press, on_release=on_release)
 lis.start()
 lis.join()
