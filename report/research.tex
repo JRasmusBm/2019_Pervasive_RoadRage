@@ -1,0 +1,112 @@
+\section{Research}\label{sec:research}
+
+The beginning of the project featured an extended research
+period, where the original research question was studied
+in depth, as well as ideas for the project at hand. In
+Sections~\ref{sec:research_question}~to~\ref{sec:choice_of_technologies}
+the results of that research are documented. Then in
+Sections~\ref{sec:plan_of_approach}~to~\ref{sec:amended_research_question}
+the plan of approach for the project is laid out and the research question
+is amended.
+
+\subsection{Original Research Question}\label{sec:research_question}
+
+Can collisions be avoided by monitoring the driver's stress levels?
+
+\subsection{Measuring Stress Response of
+Drivers}\label{sec:research_stress}
+
+In \textit{Road traffic offending, stress, age, and accident history among male
+and female drivers}~\cite{road_traffic} it is stated that stress is detremental
+to driver performance. In \textit{A Critical Review of Proactive Detection of
+Driver Stress Levels Based on Multimodal Measurements}~\cite{critical_review}
+it is
+also stated that unsuccessful driver performance causes over 80\% of vehicle
+crashes that result in fatalities and injuries. The latter further confirms
+that driver performance can be negatively affected by stress which leads to
+both high mental workload and negative moods in drivers and may result in
+inadequate information processing and imperfect perception.
+
+It also mentions that, among many others ways to physiologically monitor
+stress, HR (Heart Rate) and GSR (also known as EDA or SCL, respectively
+Galvanic Skin Response, Electro-Dermal Activity and Skin Conductance Level)
+are among the most reliable indicators of driver stress. However, they
+insist on the fact that inter-subject variability between drivers can lead
+to fluctuations in the values of features, such that a machine learning
+approach of the subject is highly recommended.
+
+Lessons were also learned from \textit{Detecting Stress During Real-World
+Driving Tasks Using Physiological Sensors}~\cite{detecting_stress}, in which
+stress was monitored throughout a real world-driving task. What was inspiring
+about the stress paper is they had 2 different approaches: the first idea was
+to observe the sensors results for 5-minute intervals and then determining
+a general level over those 5 minutes and the other was measuring stress
+level based on a real-time observation of the sensors' outputs. It, again,
+agrees that HR and GSR are likely to be the best overall physiological ways
+to detect stress.
+
+The findings in \textit{EEG alpha asymmetry, heart rate variability and
+cortisol in response to virtual reality induced stress}~\cite{eeg_alpha}
+were very useful, because it discussed about the best real-time indicator
+of stress in the case of a virtual reality induced one. In particular,
+it showed that HR (and especially HR variability) might be the best bet
+even if it would require quite large windows of analysis. Unfortunately,
+they didn't take GSR as an eventual stress correlated feature.
+
+\subsection{Creating a Virtual Environment}\label{sec:research_vr}
+
+In \textit{Immersion factors affecting perception and behavior in a virtual
+reality power wheelchair simulator}~\cite{immersion_factors} it was found that
+some kind of VR headset improved the sense of immersion. 
+
+It was also noted that in their attempts, they used a very bland environment
+to focus specifically on the measurements they were trying to gather. In the
+case of this project, the opposite was the case. The goal was to induce
+feelings akin to those of driving a real car, so as much reality as possible
+was desired.
+
+\subsection{Choice of Technologies}\label{sec:choice_of_technologies}
+
+As explained in Section~\ref{sec:research_vr}, VR was strongly preferred
+for immersion. For specific VR equipment, it was decided use Oculus Go
+in combination with Unity for the virtual environment, as those seemed to
+have the most streamlined interface and the scene was not expected to be
+very complicated.
+
+It was decided to use the Shimmer3 GSR+ Unit along with two GSR electrodes
+(fingers) and an optical pulse ear-clip all from Shimmer. During the
+research it was found, with regards to the stress detection system, that
+GSR was preferred over HR (See Section~\ref{sec:research_stress}). It was
+thus decided to let the optical pulse go. A C\# API from Shimmer's website
+was provided communicate with the GSR+ Unit.
+
+A miniature remote controlled car was chosen (as it was not within the budget
+of this project to purchase a real car) with an Arduino attached to control
+the motors. A Raspberry Pi 3 B+ was attached to the Arduino as it alone does
+not support connections over WiFi.
+
+The Raspberry Pi was programmed using Python for socket connections to the
+client PC used for stress measurements and steering. This communicates with
+both C\# and Python clients on the PC for stress measurements and driving
+control respectively.
+
+\subsection{Plan of Approach}\label{sec:plan_of_approach}
+
+At the end of the research phase it was determined to revisit the original
+research question and set concrete goals for the project. 
+
+It was decided that, though in reality perhaps infeasible, it would still
+be attempted to let the stress level directly affect car speed. For this system
+an autonomous model car would be co-opted for remote control. Stress levels
+would be measured using a Shimmer3 device.
+
+The project would be considered a success if the end system included a remote
+controlled car with some interaction with the Skin Conductance sensor, as at
+this point any level of interaction between driving controls and user stress
+was considered quite a feat.  The design plan will be further described in
+Section~\ref{sec:design}.
+
+\subsection{Research Question}\label{sec:amended_research_question}
+
+Can remote controlled car performance be improved by monitoring the user's
+stress levels?

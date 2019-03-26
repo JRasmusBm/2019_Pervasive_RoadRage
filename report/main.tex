@@ -1,0 +1,48 @@
+\documentclass[journal, a4paper]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{minted}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Pervasive Roadrage*\\ {\footnotesize \textsuperscript{*}Responding
+Appropriately to Driver Stress in a Virtual
+Reality Simulation Detected by Skin Conductance} % TODO: Change
+}
+
+\author{August Eriksson,
+  Jens Lindholm,
+  Tanguy Fournier,
+  Rasmus Bergström,
+  Pablo Luesia,
+  \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem{All the authors are
+  currently with Luleå University of Technology.}
+  \IEEEcompsocthanksitem{Fournier and Luesia are Erasmus students, while
+  Eriksson, Lindholm and Bergström are M.Sc. Students in Computer Science
+  and Engineering.}}
+}
+
+\maketitle
+
+\input{abstract.tex}
+\input{keywords.tex}
+\input{introduction.tex}
+\input{research.tex}
+% TODO: Decide on sections, add/remove files correspondingly
+\input{design.tex}
+\input{implementation.tex}
+\input{discussion.tex}
+
+\input{acknowledgment.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,sources}
+
+\end{document}

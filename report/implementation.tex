@@ -1,0 +1,74 @@
+\section{Resulting System}\label{sec:implementation}
+
+The entire system was able to be implemented as described in
+Section~\ref{sec:design}.  In this section challenges will be documented that
+were encountered and overcome in the implementation stage of the project. These
+included hardware limitations (See Section~\ref{sec:hardware_limitations}),
+power supply (See Section~\ref{sec:power_supply}) and the non-standard
+Do-It-Yourself (DIY) work needed to mount the technology onto the car.
+
+\subsection{Hardware limitations}\label{sec:hardware_limitations}
+
+As the project progressed multiple hardware limitations were found, some
+impacted the feasibility of the project or could otherwise relatively easily
+be circumvented and others were determined to be minor enough to ignore.
+The Raspberry Pi camera has a relatively low Field of View (FOV), resulting
+in a difficult to approximate depth for the user.
+
+
+The initial Raspberry Pi, a model Zero-W, which has a single core that was
+continuously under 100\% load during use, resulting in stuttering of the video
+stream. The Raspberry Pi Zero-W also has inferior networking capabilities
+in comparison to the bigger 3B+ which was also available.  For these reasons
+it was decided to replace the Zero-W with a 3B+.
+
+The initial router used was a ZyXeL P-335U which in use was found to have
+insufficient range and speed. After asking the project supervisor, a slightly
+newer router, a D-Link DIR-635, was borrowed which significantly improved
+the user experience in subsequent tests.
+
+While developing it was found that remote control car, controlled by an
+Arduino, was not able to reverse without first coming to a complete stop
+by writing the corresponding stop value to the throttle pin. This made
+for a non-intuitive driving experience as one would have to let go of the
+controls for a significant amount of time before being able to reverse.
+This was alleviated by continuously writing the corresponding stop and
+reverse values to the pin, causing a stuttering effect while reversing but
+solving the primary problem.
+
+The Oculus Go renders everything on it's own hardware, limiting the performance
+of the virtual environment created to its capabilities.
+
+\subsection{Power Supply}\label{sec:power_supply}
+
+Initially powering the Raspberry Pi was intended to be done through the Arduino
+or directly from the battery pack that powers it and the remote control car.
+
+After some consideration it was decided that to power the Raspberry Pi through
+a power-bank,  as the battery pack plugs directly into the car using a 2-pin
+Molex connector and any attempt to power the Raspberry Pi from there would
+require additional connectors and cables. It would also risk overloading
+the Arduino power regulator, as it is not intended to simultaneously power
+multiple devices on that scale.
+
+\subsection{DIY Mounting Solutions}\label{sec:diy}
+
+The system was assembled in steps as requirements arose. As time was limited
+and the requirements, and subsequently the equipment, could change in a day,
+permanent or otherwise more time consuming mounting solutions were discarded. 
+
+Whether the time required would've been waiting for 3d-printing to finish or
+delivery of ordered products.  
+
+The solutions used primarily used electrical tape and stray pieces of
+cardboard. The specific implementations were:
+\begin{itemize}
+\item A powerbank for powering the Raspberry Pi 3 taped to the fender. 
+\item A Raspberry Pi 3 for primary user communication taped onto the back of
+the car. 
+\item A Raspberry Pi camera taped to a piece of cardboard which itself is
+fastened with tape to be just above the Raspberry Pi 3.
+\end{itemize}
+%
+% Evaluate the result based on the requirements of success outlined in
+% ~\ref{sec:plan_of_approach} 
